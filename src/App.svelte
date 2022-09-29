@@ -11,7 +11,6 @@
   onMount(() => {
     supabase.auth.getSession().then(({ data }) => {
       session = data.session;
-      console.log(session)
     });
 
     supabase.auth.onAuthStateChange((_event, _session) => {
@@ -24,6 +23,6 @@
   {#if !session}
     <Auth />
   {:else}
-    <Search {session}/>
+    <Search {session} />
   {/if}
 </div>
