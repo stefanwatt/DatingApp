@@ -5,24 +5,23 @@
   import Account from "./lib/Account.svelte";
   import Auth from "./lib/Auth.svelte";
   import Search from "./lib/Search/Search.svelte";
-
-  let session: AuthSession;
+  import { authSession } from "./store";
 
   onMount(() => {
     supabase.auth.getSession().then(({ data }) => {
-      session = data.session;
+      $authSession = data.session;
     });
 
     supabase.auth.onAuthStateChange((_event, _session) => {
-      session = _session;
+      $authSession = _session;
     });
   });
 </script>
 
 <div class="container" style="padding: 50px 0 100px 0">
-  {#if !session}
+  {#if !$authSession}
     <Auth />
   {:else}
-    <Search {session} />
+    <Search session={$authSession} />
   {/if}
 </div>
