@@ -22,6 +22,6 @@
   {#if !$authSession}
     <Auth />
   {:else}
-    <Search session={$authSession} />
+    <Search />
   {/if}
 </div>
