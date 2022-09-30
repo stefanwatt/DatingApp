@@ -1,6 +1,6 @@
 import type { AuthSession } from "@supabase/supabase-js";
 import { searchingForMatch } from "./store";
-import { authSession } from "../../store.ts";
+import { authSession } from "../../store";
 import { supabase } from "../../supabaseClient";
 import { get } from "svelte/store";
 
