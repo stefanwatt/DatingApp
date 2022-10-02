@@ -15,7 +15,7 @@ interface Opts{
   body?: any;
 }
 
-const send = ({ method, path, data, token }:Input) => {
+const send = async({ method, path, data, token }:Input) => {
 	const opts:Opts = { method, headers: {} };
 	if (data) {
 		opts.headers['Content-Type'] = 'application/json';
@@ -43,18 +43,18 @@ const send = ({ method, path, data, token }:Input) => {
 		});
 }
 
-export const get = (path, token) => {
+export const get = (path:string, token:string) => {
 	return send({ method: 'GET', path, token });
 }
 
-export const del = (path, token) => {
+export const del = (path:string, token:string) => {
 	return send({ method: 'DELETE', path, token });
 }
 
-export const post = (path, data, token) => {
+export const post = (path:string, data:any, token:string) => {
 	return send({ method: 'POST', path, data, token });
 }
 
-export const put = (path, data, token) => {
+export const put = (path:string, data:any, token:string) => {
 	return send({ method: 'PUT', path, data, token });
 }
