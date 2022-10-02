@@ -11,6 +11,7 @@ export const connectOnMatchOffer = async ()=>{
       "postgres_changes",
       { event: "INSERT", schema: "public", table: "match_offer" },
       async (payload) => {
+        console.log("new match offer: ", payload.new)
         await connect(payload.new);
       }
     )

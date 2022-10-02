@@ -16,7 +16,7 @@ serve(async (req) => {
 
     const myPeerId = (await req.json()).peer_id;
 
-    const { offered_by, offered_to } = await createMatchOffer(user, myPeerId);
+    await createMatchOffer(user, myPeerId);
 
     return new Response(JSON.stringify({ success: true }), {
       headers: {

@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { supabase } from "./supabaseClient";
-  import type { AuthSession } from "@supabase/supabase-js";
-  import Account from "./lib/Account.svelte";
   import Auth from "./lib/Auth.svelte";
   import Search from "./lib/Search/Search.svelte";
   import { authSession } from "./store";
@@ -18,7 +16,7 @@
   });
 </script>
 
-<div class="container" style="padding: 50px 0 100px 0">
+<div class="p-4">
   {#if !$authSession}
     <Auth />
   {:else}

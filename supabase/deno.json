@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowJs": true,
+    "lib": ["deno.window"],
+    "strict": true
+  },
+  "lint": {
+    "files": {
+      "include": ["supabase/**"],
+      "exclude": ["src/**"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": ["supabase/"],
+      "exclude": ["src/"]
+    },
+    "options": {
+      "useTabs": true,
+      "lineWidth": 80,
+      "indentWidth": 4,
+      "singleQuote": true,
+      "proseWrap": "preserve"
+    }
+  }
+}

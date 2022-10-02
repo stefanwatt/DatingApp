@@ -1,5 +1,4 @@
-import { supabaseUrl } from "./constants";
-
+const supabaseFunctionsUrl = "https://eftuzdqfmktuitpnczio.functions.supabase.co"
 async function send({ method, path, data, token }) {
 	const opts = { method, headers: {} };
 
@@ -9,17 +8,17 @@ async function send({ method, path, data, token }) {
 	}
 
 	if (token) {
-		opts.headers['Authorization'] = `Token ${token}`;
+		opts.headers['Authorization'] = `Bearer ${token}`;
 	}
 
-	return fetch(`${supabaseUrl}/${path}`, opts)
+	return fetch(`${supabaseFunctionsUrl}/${path}`, opts)
 		.then((r) => r.text())
 		.then((json) => {
 			try {
 				var resParsed = JSON.parse(json);
 
 				if (resParsed?.status === 'error') {
-					console.log(`API response error from ${supabaseUrl}/${path}: ${json}`);
+					console.log(`API response error from ${supabaseFunctionsUrl}/${path}: ${json}`);
 				}
 
 				return resParsed;
