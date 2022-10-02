@@ -1,7 +1,22 @@
-const supabaseFunctionsUrl = "https://eftuzdqfmktuitpnczio.functions.supabase.co"
-async function send({ method, path, data, token }) {
-	const opts = { method, headers: {} };
+import {supabaseFunctionsUrl} from "./constants"
 
+type Method = "GET"|"DELETE"|"POST"|"PUT"
+
+interface Input{
+  method: Method;
+  path: string;
+  data?:any;
+  token:string
+}
+
+interface Opts{
+  method:Method;
+  headers: any;
+  body?: any;
+}
+
+const send = ({ method, path, data, token }:Input) => {
+	const opts:Opts = { method, headers: {} };
 	if (data) {
 		opts.headers['Content-Type'] = 'application/json';
 		opts.body = JSON.stringify(data);
@@ -28,18 +43,18 @@ async function send({ method, path, data, token }) {
 		});
 }
 
-export function get(path, token) {
+export const get = (path, token) => {
 	return send({ method: 'GET', path, token });
 }
 
-export function del(path, token) {
+export const del = (path, token) => {
 	return send({ method: 'DELETE', path, token });
 }
 
-export function post(path, data, token) {
+export const post = (path, data, token) => {
 	return send({ method: 'POST', path, data, token });
 }
 
-export function put(path, data, token) {
+export const put = (path, data, token) => {
 	return send({ method: 'PUT', path, data, token });
 }

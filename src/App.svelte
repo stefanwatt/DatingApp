@@ -4,7 +4,8 @@
   import Auth from "./lib/Auth.svelte";
   import Search from "./lib/Search/Search.svelte";
   import { authSession } from "./store";
-
+  import { connectedTo, connectedToPeer } from "./lib/Search/store";
+  import { call } from "./lib/Search/peer";
   onMount(() => {
     supabase.auth.getSession().then(({ data }) => {
       $authSession = data.session;
@@ -19,6 +20,10 @@
 <div class="p-4">
   {#if !$authSession}
     <Auth />
+  {:else if $connectedToPeer}
+    <p>connected to: {$connectedTo}</p>
+    <button on:click={call} class="btn btn-primary">Call</button>
+    <audio id="audioStream" />
   {:else}
     <Search />
   {/if}
